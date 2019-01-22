@@ -50,27 +50,31 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
-    c1x = rectangle.corner_1.x
-    c2x = rectangle.corner_2.x
-    c1y = rectangle.corner_1.y
-    c2y = rectangle.corner_2.y
-    diffx = rectangle.corner_2.x - rectangle.corner_1.x
-    diffy = rectangle.corner_2.y - rectangle.corner_1.y
+    rect = rectangle.clone()
+    c1x = rect.get_upper_left_corner().x
+    print(c1x)
+    c2x = rect.get_lower_right_corner().x
+    print(c2x)
+    c1y = rect.get_upper_left_corner().y
+    c2y = rect.get_lower_right_corner().y
+    diffx = rect.get_width()
+    diffy = rect.get_height()
     rectangle.attach_to(window)
     for i in range(n):
         for j in range(i + 1):
-            rectangle1 = rg.Rectangle(rg.Point(c1x - .5 * diffx, c1y - diffy), rg.Point(c2x - .5 * diffx, c2y - diffy))
-            rectangle1.attach_to(window)
-            c1x = c2x
+            rect = rg.Rectangle(rg.Point(c1x, c1y), rg.Point(c2x, c2y))
+            rect.attach_to(window)
+            c1x = c1x + diffx
             c2x = c2x + diffx
-            print(c1x)
-        c1x = c1x - (i * diffx)
-        c2x = c2x - (i * diffx)
-        c1y = c1y - diffy
-        c2y = c2y - diffy
+            print('this is c1x:', c1x)
+            print('this is c2x:', c2x)
+        c1x = rectangle.get_upper_left_corner().x - ((i + 1) * diffx/2)
+        c2x = rectangle.get_lower_right_corner().x - ((i + 1) * diffx/2)
+        c1y = rectangle.get_upper_left_corner().y - ((i + 1) * diffy)
+        c2y = rectangle.get_lower_right_corner().y - ((i + 1) * diffy)
     window.render()
 
 
