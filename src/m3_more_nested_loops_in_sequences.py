@@ -10,8 +10,8 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 
 def main():
     """ Calls the other functions to test them. """
-    run_test_largest_number()
-    run_test_largest_negative_number()
+    # run_test_largest_number()
+    # run_test_largest_negative_number()
     run_test_first_is_elsewhere_too()
 
 
@@ -433,27 +433,27 @@ def first_is_elsewhere_too(seq_seq):
     #   in this problem, as doing so would defeat the goal of providing
     #   practice at loops within loops (within loops within ...)
     # -------------------------------------------------------------------------
-    # for i in range(1, len(seq_seq)):
-    #     if seq_seq[0] == []:
-    #         x = []
-    #     else:
-    #         x = seq_seq[0][i - 1]
-    #     for j in range(len(seq_seq[i])):
-    #         if x == seq_seq[i][j]:
-    #             print(x)
-    #             return True
-    # return False
-
-    for i in range(len(seq_seq)):
+    for i in range(1, len(seq_seq)):
         if seq_seq[0] == []:
             x = []
         else:
-            x = seq_seq[0][i]
-        for j in range(len(seq_seq[i + 1])):
-            if x == seq_seq[i + 1][j]:
+            x = seq_seq[0][i - 1]
+        for j in range(len(seq_seq[i])):
+            if x == seq_seq[i][j]:
                 print(x)
                 return True
     return False
+
+    # for i in range(len(seq_seq)):
+    #     if seq_seq[0] == []:
+    #         x = []
+    #     else:
+    #         x = seq_seq[0][i]
+    #     for j in range(len(seq_seq[i + 1])):
+    #         if x == seq_seq[i + 1][j]:
+    #             print(x)
+    #             return True
+    # return False
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
